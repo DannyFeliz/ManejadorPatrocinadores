@@ -1,0 +1,34 @@
+﻿@using ManejadorDePatrocinadores.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reporte de Emisoras de Radio</h2>
+<a href="/EmisoraRadio/Create" class="btn btn-primary">Agregar Emisora de Radio</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <td>NFI</td>
+        <td>Nombre</td>
+        <td>Banda Hertziana</td>
+        <td>Dirección</td>
+        <td>Provincia</td>
+        <td>Director</td>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in (List<EmisoraRadio>)ViewData["rows"])
+        {
+            <tr>
+                <td>@row.nfi</td>
+                <td>@row.nombre</td>
+                <td>@row.banda_hertziana</td>
+                <td>@row.direccion_postal</td>
+                <td>@row.provincia</td>
+                <td>@row.director</td>
+            </tr>
+        }
+    </tbody>
+</table>
