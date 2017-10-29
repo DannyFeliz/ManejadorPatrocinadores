@@ -17,32 +17,7 @@ namespace ManejadorDePatrocinadores.Controllers
         public ActionResult Index()
         {
 
-            var connection = Utils.Db.Connection();
-            var list = new List<EmisoraRadio>();
-
-            using (var query = connection.CreateCommand())
-            {
-                query.CommandText = "EXEC lista_emisoras_radios";
-                connection.Open();
-                using (var row = query.ExecuteReader())
-                {
-                    while (row.Read())
-                    {
-                        var emisoraRadio = new EmisoraRadio
-                        {
-                            nfi = Convert.ToInt32(row.GetValue(row.GetOrdinal("nfi"))),
-                            banda_hertziana = row.GetValue(row.GetOrdinal("banda_hertziana")).ToString(),
-                            direccion_postal = row.GetValue(row.GetOrdinal("direccion_postal")).ToString(),
-                            director = row.GetValue(row.GetOrdinal("director")).ToString(),
-                            nombre = row.GetValue(row.GetOrdinal("nombre")).ToString(),
-                            provincia = row.GetValue(row.GetOrdinal("provincia")).ToString()
-                        };
-                        list.Add(emisoraRadio);
-                    }
-                    ViewData["rows"] = list;
-                }
-                connection.Close();
-            }
+            ViewData["rows"] = EmisoraRadio.obtenerTodas();
 
             return View();
         }
@@ -81,21 +56,20 @@ namespace ManejadorDePatrocinadores.Controllers
                 using (var connection = Utils.Db.Connection())
                 {
                     connection.Open();
-//                    string sql = "EXEC insertar_emisora_radio 3434, 'La emisora', 'La Dirección', 'El Director', 'AM', 'La Provincia';";
-                //                    SqlCommand cmd = new SqlCommand(sql, connection);
 
                 SqlCommand cmd = new SqlCommand("insertar_emisora_radio", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("nfi",123123);
-                    cmd.Parameters.AddWithValue("nombre", "ASDA");
-                    cmd.Parameters.AddWithValue("direccion", "Dire");
-                    cmd.Parameters.AddWithValue("director", "El dire");
-                    cmd.Parameters.AddWithValue("banda", "AM");
-                    cmd.Parameters.AddWithValue("provincia", "Santo Domingo");
+                    cmd.Parameters.AddWithValue("nfi", collection.GetValue("nfi").AttemptedValue);
+                    cmd.Parameters.AddWithValue("nombre", collection.GetValue("nombre").AttemptedValue);
+                    cmd.Parameters.AddWithValue("direccion", collection.GetValue("direccion_postal").AttemptedValue);
+                    cmd.Parameters.AddWithValue("director", collection.GetValue("director").AttemptedValue);
+                    cmd.Parameters.AddWithValue("banda", collection.GetValue("banda_hertziana").AttemptedValue);
+                    cmd.Parameters.AddWithValue("provincia", collection.GetValue("provincia").AttemptedValue);
                     cmd.ExecuteNonQuery();
                     connection.Close();
                 }
 
+                ViewData["rows"] = EmisoraRadio.obtenerTodas();
                 return RedirectToAction("Index");
 //            }
 //            catch

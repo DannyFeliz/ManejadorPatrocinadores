@@ -8,7 +8,7 @@ using System.Web;
 
 namespace ManejadorDePatrocinadores.Models
 {
-    public class EmisoraRadio
+    public class CadenaRadio
     {
         [MaxLength(9)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es requerido")]
