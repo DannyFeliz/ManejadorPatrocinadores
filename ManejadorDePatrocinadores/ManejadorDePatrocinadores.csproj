@@ -120,12 +120,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CadenaRadioController.cs" />
+    <Compile Include="Controllers\DirectorController.cs" />
     <Compile Include="Controllers\EmisoraRadioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CadenaRadio.cs" />
+    <Compile Include="Models\Director.cs" />
     <Compile Include="Models\EmisoraRadio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Helpers.cs" />
@@ -179,6 +182,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\EmisoraRadio\Index.cshtml" />
     <Content Include="Views\EmisoraRadio\Create.cshtml" />
+    <Content Include="Views\CadenaRadio\Index.cshtml" />
+    <Content Include="Views\CadenaRadio\Create.cshtml" />
+    <Content Include="Views\Director\Index.cshtml" />
     <None Include="Views\Web.config.example" />
   </ItemGroup>
   <ItemGroup>

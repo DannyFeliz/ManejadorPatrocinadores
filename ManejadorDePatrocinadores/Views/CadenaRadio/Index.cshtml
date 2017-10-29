@@ -1,0 +1,36 @@
+﻿@using ManejadorDePatrocinadores.Models
+@model IEnumerable<ManejadorDePatrocinadores.Models.CadenaRadio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Nombre</td>
+        <td>Sede Central</td>
+        <td>Director</td>
+        <td>Empresa de Medios</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in (List<CadenaRadio>)ViewData["cadenasRadios"])
+    {
+        <tr>
+            <td>@row.id</td>
+            <td>@row.nombre_representativo</td>
+            <td>@row.sede_central_nombre</td>
+            <td>@row.director_nombre</td>
+            <td>@row.empresa_medios</td>
+            
+        </tr>
+    }
+    </tbody>
+</table>

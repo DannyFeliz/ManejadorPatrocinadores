@@ -10,55 +10,46 @@ namespace ManejadorDePatrocinadores.Models
 {
     public class CadenaRadio
     {
-        [MaxLength(9)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es requerido")]
-        [DisplayName("NFI")]
-        public int nfi { get; set; }
+        [DisplayName("Id")]
+        public int id { get; set; }
         [DisplayName("Nombre")]
-        [MaxLength(100)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es requerido")]
-        public string nombre { get; set; }
-        [DisplayName("Dirección Postal")]
-        [MaxLength(100)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es requerido")]
-        public string direccion_postal { get; set; }
-        [DisplayName("Director")]
-        [MaxLength(50)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es requerido")]
-        public string director { get; set; }
-        [DisplayName("Banda Hertziana")]
-        [MaxLength(50)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es requerido")]
-        public string banda_hertziana { get; set; }
         [MaxLength(75)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es requerido")]
-        [DisplayName("Provincia")]
-        public string provincia  { get; set; }
+        public string nombre_representativo { get; set; }
+        [DisplayName("Sede Central")]
+        public int sede_central { get; set; }
+        [DisplayName("Director")]
+        public int director { get; set; }
+        [DisplayName("Empresa de Medios")]
+        public int empresa_medios  { get; set; }
+        public virtual string director_nombre { get; set; }
+        public virtual string sede_central_nombre { get; set; }
+        public virtual string empresa_medios_nombre { get; set; }
 
 
-        public static List<EmisoraRadio> obtenerTodas()
+        public static List<CadenaRadio> obtenerTodas()
         {
             var connection = Utils.Db.Connection();
-            var list = new List<EmisoraRadio>();
+            var list = new List<CadenaRadio>();
 
             using (var query = connection.CreateCommand())
             {
-                query.CommandText = "EXEC lista_emisoras_radios";
+                query.CommandText = "EXEC lista_cadenas_radios";
                 connection.Open();
                 using (var row = query.ExecuteReader())
                 {
                     while (row.Read())
                     {
-                        var emisoraRadio = new EmisoraRadio
+                        var cadenaRadio = new CadenaRadio
                         {
-                            nfi = Convert.ToInt32(row.GetValue(row.GetOrdinal("nfi"))),
-                            banda_hertziana = row.GetValue(row.GetOrdinal("banda_hertziana")).ToString(),
-                            direccion_postal = row.GetValue(row.GetOrdinal("direccion_postal")).ToString(),
-                            director = row.GetValue(row.GetOrdinal("director")).ToString(),
-                            nombre = row.GetValue(row.GetOrdinal("nombre")).ToString(),
-                            provincia = row.GetValue(row.GetOrdinal("provincia")).ToString()
+                            id = Convert.ToInt32(row.GetValue(row.GetOrdinal("id"))),
+                            nombre_representativo = row.GetValue(row.GetOrdinal("nombre_representativo")).ToString(),
+                            sede_central = Convert.ToInt32(row.GetValue(row.GetOrdinal("sede_central"))),
+                            sede_central_nombre = row.GetValue(row.GetOrdinal("sede_central_nombre")).ToString(),
+                            director = Convert.ToInt32(row.GetValue(row.GetOrdinal("director"))),
+                            director_nombre = row.GetValue(row.GetOrdinal("director_nombre")).ToString(),
+                            empresa_medios = Convert.ToInt32(row.GetValue(row.GetOrdinal("empresa_medios")))
                         };
-                        list.Add(emisoraRadio);
+                        list.Add(cadenaRadio);
                     }
                 }
                 connection.Close();

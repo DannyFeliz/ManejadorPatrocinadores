@@ -1,0 +1,32 @@
+﻿@using ManejadorDePatrocinadores.Models
+@model IEnumerable<ManejadorDePatrocinadores.Models.CadenaRadio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Nombre</td>
+    </tr>
+    </thead>
+    <tbody>
+    @*
+        TODO: Agregar las referencias a las emisoras y cadenas de radio    
+    *@
+    @foreach (var row in (List<Director>) ViewData["directores"])
+    {
+        <tr>
+            <td>@row.id</td>
+            <td>@row.nombre</td>
+        </tr>
+    }
+    </tbody>
+</table>
