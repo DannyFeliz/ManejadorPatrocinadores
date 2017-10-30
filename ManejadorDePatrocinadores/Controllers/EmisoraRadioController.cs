@@ -39,9 +39,6 @@ namespace ManejadorDePatrocinadores.Controllers
 
             ViewData["provinces"] = Utils.Helpers.ProvincesList();
 
-
-
-
             return View();
         }
 

@@ -9,55 +9,59 @@ using ManejadorDePatrocinadores.Models;
 
 namespace ManejadorDePatrocinadores.Controllers
 {
-    public class DirectorController : Controller
+    public class EmpresaMediosController : Controller
     {
-        // GET: Director
+        // GET: EmpresaMedios
         public ActionResult Index()
         {
-            ViewData["directores"] = Director.obtenerTodos();
+            ViewData["empresasMedios"] = EmpresaMedio.obtenerTodas();
 
             return View();
         }
 
-        // GET: Director/Details/5
+        // GET: EmpresaMedios/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Director/Create
+        // GET: EmpresaMedios/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Director/Create
+        // POST: EmpresaMedios/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+
             using (var connection = Utils.Db.Connection())
             {
                 connection.Open();
 
-                SqlCommand cmd = new SqlCommand("insertar_director", connection);
+                SqlCommand cmd = new SqlCommand("insertar_empresa_medios", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("nif", collection.GetValue("nif").AttemptedValue);
                 cmd.Parameters.AddWithValue("nombre", collection.GetValue("nombre").AttemptedValue);
+                cmd.Parameters.AddWithValue("direccion_postal", collection.GetValue("direccion_postal").AttemptedValue);
+                cmd.Parameters.AddWithValue("director", collection.GetValue("director").AttemptedValue);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
 
-            ViewData["directores"] = Director.obtenerTodos();
+            ViewData["empresasMedios"] = EmpresaMedio.obtenerTodas();
             return RedirectToAction("Index");
 
         }
 
-        // GET: Director/Edit/5
+        // GET: EmpresaMedios/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Director/Edit/5
+        // POST: EmpresaMedios/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -73,13 +77,13 @@ namespace ManejadorDePatrocinadores.Controllers
             }
         }
 
-        // GET: Director/Delete/5
+        // GET: EmpresaMedios/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Director/Delete/5
+        // POST: EmpresaMedios/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
