@@ -15,6 +15,7 @@ namespace ManejadorDePatrocinadores.Controllers
         public ActionResult Index()
         {
             ViewData["empresasMedios"] = EmpresaMedio.obtenerTodas();
+            
 
             return View();
         }

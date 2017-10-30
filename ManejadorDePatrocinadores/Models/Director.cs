@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ManejadorDePatrocinadores.Models
 {
@@ -16,6 +17,7 @@ namespace ManejadorDePatrocinadores.Models
         {
             var connection = Utils.Db.Connection();
             var list = new List<Director>();
+            
 
             using (var query = connection.CreateCommand())
             {

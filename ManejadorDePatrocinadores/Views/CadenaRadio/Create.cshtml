@@ -1,4 +1,5 @@
-﻿@model ManejadorDePatrocinadores.Models.CadenaRadio
+﻿@using ManejadorDePatrocinadores.Models
+@model ManejadorDePatrocinadores.Models.CadenaRadio
 
 @{
     ViewBag.Title = "Create";
@@ -17,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nombre_representativo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nombre_representativo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.nombre_representativo, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.nombre_representativo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,24 +26,42 @@
         <div class="form-group">
             @Html.LabelFor(model => model.sede_central, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.sede_central, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sede_central, "", new { @class = "text-danger" })
+                <select class="form-control" required name="sede_central">
+                    @foreach (var item in (List<EmisoraRadio>)ViewData["emisoraLista"])
+                    {
+                        <option value="@item.nfi">@item.nombre</option>
+                    }
+                </select>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.director, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.director, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.director, "", new { @class = "text-danger" })
-            </div>
+                
+                <select class="form-control" required name="director">
+                    @foreach (var item in (List<Director>)ViewData["directoresLista"])
+                    {
+                        <option value="@item.id">@item.nombre</option>
+                    }
+                </select>
+
+</div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.empresa_medios, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.empresa_medios, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.empresa_medios, "", new { @class = "text-danger" })
+               
+                
+                <select class="form-control" required name="empresa_medios">
+                    @foreach (var item in (List<EmpresaMedio>)ViewData["empresaMediosLista"])
+                    {
+                        <option value="@item.nif">@item.nombre</option>
+                    }
+                </select>
+                
+
             </div>
         </div>
 

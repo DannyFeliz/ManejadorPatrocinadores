@@ -28,6 +28,10 @@ namespace ManejadorDePatrocinadores.Controllers
         // GET: CadenaRadio/Create
         public ActionResult Create()
         {
+            ViewData["directoresLista"] = Director.obtenerTodos();
+            ViewData["emisoraLista"] = EmisoraRadio.obtenerTodas();
+            ViewData["empresaMediosLista"] = EmpresaMedio.obtenerTodas();
+
             return View();
         }
 
