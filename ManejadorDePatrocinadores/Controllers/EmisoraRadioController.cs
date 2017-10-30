@@ -22,25 +22,14 @@ namespace ManejadorDePatrocinadores.Controllers
             return View();
         }
 
-        // GET: EmisoraRadio/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: EmisoraRadio/Create
         public ActionResult Create()
         {
-            var selectList = new SelectList(new List<SelectListItem>
-                        {
-                            new SelectListItem {Text = "FM", Value = "FM"},
-                            new SelectListItem {Text = "AM", Value = "AM"},
-                        }, "Value", "Text");
-
             ViewData["provinces"] = Utils.Helpers.ProvincesList();
-
+            ViewData["directoresLista"] = Director.obtenerTodos();
             return View();
         }
+
 
         // POST: EmisoraRadio/Create
         [HttpPost]
@@ -75,48 +64,5 @@ namespace ManejadorDePatrocinadores.Controllers
 //            }
         }
 
-        // GET: EmisoraRadio/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: EmisoraRadio/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: EmisoraRadio/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: EmisoraRadio/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
