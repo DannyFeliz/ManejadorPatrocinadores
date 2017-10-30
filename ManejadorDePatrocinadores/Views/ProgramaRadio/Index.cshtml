@@ -1,0 +1,23 @@
+﻿@using ManejadorDePatrocinadores.Models
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Listado de Programas de Radio</h2>
+<a href="/ProgramaRadio/Create" class="btn btn-primary">Agregar Programa de Radio</a>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Responsable</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in (List<ProgramaRadio>)ViewData["programas_de_radio"])
+        {
+            <tr>
+                <td>@row.nombre</td>
+                <td>@row.responsable</td>
+            </tr>
+        }
+    </tbody>
+</table>

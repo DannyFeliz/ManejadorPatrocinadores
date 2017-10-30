@@ -1,0 +1,90 @@
+﻿@model ManejadorDePatrocinadores.Models.ProgramaRadio
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ProgramaRadio</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.responsable, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.responsable, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.responsable, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="container contenedorHorarios">
+        <div id="componenteHorario">
+            <div class="form-group">
+                @Html.LabelFor(model => model.dia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @{
+                        var dias_de_la_semana = new SelectList((List<SelectListItem>)ViewData["dias_de_la_semana"], "Value", "Text");
+                    }
+                    @Html.DropDownListFor(model => model.dia, dias_de_la_semana, new { @class = "form-control", required = "required", Name = "dia[]" })
+                    @Html.ValidationMessageFor(model => model.dia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.hora_inicio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.hora_inicio, new { htmlAttributes = new { @class = "form-control", Name = "hora_inicio[]" }})
+                    @Html.ValidationMessageFor(model => model.hora_inicio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.hora_fin, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.hora_fin, new { htmlAttributes = new { @class = "form-control", Name = "hora_fin[]" }})
+                    @Html.ValidationMessageFor(model => model.hora_fin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="fom-group">
+            <button id="agregarHorario">Agregar Horario</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $('#agregarHorario').click(function (event) {
+        event.preventDefault();
+        agregarComponenteHorario();
+    });
+    agregarComponenteHorario = function () {
+        nuevo_horario = $('#componenteHorario').clone();
+        $('.container .contenedorHorarios').append(nuevo_horario);
+    }
+</script>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

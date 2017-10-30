@@ -1,0 +1,29 @@
+﻿@using ManejadorDePatrocinadores.Models
+@{
+    ViewBag.Title = "Publicidad";
+}
+<h2>Listado de Patrocinadores</h2>
+<a href="/Publicidad/Create" class="btn btn-primary">Agregar Publicidad</a>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Programa de Radio</td>
+            <td>Segundos</td>
+            <td>Patrocinador</td>
+            <td>Precio x Segundo</td>
+            <td>Costo</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in (List<Publicidad>)ViewData["publicidad"])
+        {
+            <tr>
+                <td>@row.programa_radio</td>
+                <td>@row.segundos</td>
+                <td>@row.patrocinador</td>
+                <td>@row.precio_segundo</td>
+                <td>@row.costo</td>
+            </tr>
+        }
+    </tbody>
+</table>

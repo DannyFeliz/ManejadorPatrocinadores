@@ -46,5 +46,19 @@ namespace ManejadorDePatrocinadores.Utils
                 new SelectListItem {Text = "Valverde", Value = "Valverde"}
             };
         }
+
+        public static List<SelectListItem> DaysList()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem {Value = "1", Text = "Lunes"},
+                new SelectListItem {Value = "2", Text = "Martes"},
+                new SelectListItem {Value = "3", Text = "Miercoles"},
+                new SelectListItem {Value = "4", Text = "Jueves"},
+                new SelectListItem {Value = "5", Text = "Viernes"},
+                new SelectListItem {Value = "6", Text = "Sabados"},
+                new SelectListItem {Value = "7", Text = "Domingos"}
+            };
+        }
     }
 }
