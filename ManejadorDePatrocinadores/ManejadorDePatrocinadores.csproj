@@ -123,11 +123,13 @@
     <Compile Include="Controllers\CadenaRadioController.cs" />
     <Compile Include="Controllers\DirectorController.cs" />
     <Compile Include="Controllers\EmisoraRadioController.cs" />
+    <Compile Include="Controllers\EmpresaMediosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CadenaRadio.cs" />
+    <Compile Include="Models\EmpresaMedio.cs" />
     <Compile Include="Models\Director.cs" />
     <Compile Include="Models\EmisoraRadio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -185,6 +187,9 @@
     <Content Include="Views\CadenaRadio\Index.cshtml" />
     <Content Include="Views\CadenaRadio\Create.cshtml" />
     <Content Include="Views\Director\Index.cshtml" />
+    <Content Include="Views\EmpresaMedios\Index.cshtml" />
+    <Content Include="Views\Director\Create.cshtml" />
+    <Content Include="Views\EmpresaMedios\Create.cshtml" />
     <None Include="Views\Web.config.example" />
   </ItemGroup>
   <ItemGroup>

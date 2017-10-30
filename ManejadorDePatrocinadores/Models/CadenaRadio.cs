@@ -47,7 +47,8 @@ namespace ManejadorDePatrocinadores.Models
                             sede_central_nombre = row.GetValue(row.GetOrdinal("sede_central_nombre")).ToString(),
                             director = Convert.ToInt32(row.GetValue(row.GetOrdinal("director"))),
                             director_nombre = row.GetValue(row.GetOrdinal("director_nombre")).ToString(),
-                            empresa_medios = Convert.ToInt32(row.GetValue(row.GetOrdinal("empresa_medios")))
+                            empresa_medios = Convert.ToInt32(row.GetValue(row.GetOrdinal("empresa_medios"))),
+                            empresa_medios_nombre = row.GetValue(row.GetOrdinal("empresa_medios_nombre")).ToString()
                         };
                         list.Add(cadenaRadio);
                     }
