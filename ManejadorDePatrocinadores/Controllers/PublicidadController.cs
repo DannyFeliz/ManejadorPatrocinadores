@@ -8,11 +8,8 @@ namespace ManejadorDePatrocinadores.Controllers
     {
         // GET: Publicidad
         public ActionResult Index()
-        {
-    
-            //ViewData["patrocinadores"] = Models.Publicidad.obtenerTodas();
+        {   
             ViewData["publicidad"] = Models.Publicidad.obtenerTodas();
-
             return View();
         }
 
@@ -25,6 +22,8 @@ namespace ManejadorDePatrocinadores.Controllers
         // GET: Publicidad/Create
         public ActionResult Create()
         {
+            ViewData["patrocinadores"] = Models.Patrocinador.obtenerTodos();
+            ViewData["programas_de_radio"] = Models.ProgramaRadio.obtenerTodas();
             return View();
         }
 
@@ -54,6 +53,8 @@ namespace ManejadorDePatrocinadores.Controllers
             }
             catch
             {
+                ViewData["patrocinadores"] = Models.Patrocinador.obtenerTodos();
+                ViewData["programas_de_radio"] = Models.ProgramaRadio.obtenerTodas();
                 return View();
             }
         }
