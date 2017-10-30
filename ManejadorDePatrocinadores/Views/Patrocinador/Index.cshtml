@@ -1,0 +1,27 @@
+﻿@using ManejadorDePatrocinadores.Models
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Listado de Patrocinadores</h2>
+<a href="/Patrocinador/Create" class="btn btn-primary">Agregar Patrocinador</a>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Numero de Contrato</td>
+            <td>Nombre</td>
+            <td>Duracion de Contrato</td>
+            <td>Importe de Contrato</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in (List<Patrocinador>)ViewData["patrocinadores"])
+        {
+            <tr>
+                <td>@row.numero_contrato</td>
+                <td>@row.nombre</td>
+                <td>@row.duracion_contrato</td>
+                <td>@row.importe_contrato</td>
+            </tr>
+        }
+    </tbody>
+</table>
