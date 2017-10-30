@@ -21,6 +21,10 @@ namespace ManejadorDePatrocinadores.Models
         public int director { get; set; }
         [DisplayName("Empresa de Medios")]
         public int empresa_medios  { get; set; }
+        [DisplayName("Duración")]
+        public string duracion { get; set; }
+
+
         public virtual string director_nombre { get; set; }
         public virtual string sede_central_nombre { get; set; }
         public virtual string empresa_medios_nombre { get; set; }
@@ -48,7 +52,8 @@ namespace ManejadorDePatrocinadores.Models
                             director = Convert.ToInt32(row.GetValue(row.GetOrdinal("director"))),
                             director_nombre = row.GetValue(row.GetOrdinal("director_nombre")).ToString(),
                             empresa_medios = Convert.ToInt32(row.GetValue(row.GetOrdinal("empresa_medios"))),
-                            empresa_medios_nombre = row.GetValue(row.GetOrdinal("empresa_medios_nombre")).ToString()
+                            empresa_medios_nombre = row.GetValue(row.GetOrdinal("empresa_medios_nombre")).ToString(),
+                            duracion = row.GetValue(row.GetOrdinal("duracion")).ToString()
                         };
                         list.Add(cadenaRadio);
                     }

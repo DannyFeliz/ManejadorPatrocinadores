@@ -35,6 +35,12 @@ namespace ManejadorDePatrocinadores.Controllers
             return View();
         }
 
+        // GET: EmisoraRadio/Create
+        public string programs()
+        {
+            return "[{\"nombre\": \"Buenas Noches\", \"id\":433}, {\"nombre\": \"Serie 1\", \"id\": 234}]";
+        }
+
         // POST: CadenaRadio/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -49,12 +55,59 @@ namespace ManejadorDePatrocinadores.Controllers
                 cmd.Parameters.AddWithValue("sede_central", collection.GetValue("sede_central").AttemptedValue);
                 cmd.Parameters.AddWithValue("director", collection.GetValue("director").AttemptedValue);
                 cmd.Parameters.AddWithValue("empresa_medios", collection.GetValue("empresa_medios").AttemptedValue);
+                cmd.Parameters.AddWithValue("duracion", collection.GetValue("duracion").AttemptedValue);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
 
+            var id = ultimoId();
+
+
+            var count = collection.Count;
+            count = count - 6;
+            if (count > 0) { 
+                for (var i = 1; i <= count; i++)
+                {
+                    using (var connection = Utils.Db.Connection())
+                    {
+                        connection.Open();
+
+                        SqlCommand cmd = new SqlCommand("insertar_cadenas_programas_radio", connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("programa_radio", Convert.ToInt16(collection.GetValue("programa-" + i).AttemptedValue));
+                        cmd.Parameters.AddWithValue("cadena_radio", id);
+                        cmd.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+            }
+
             ViewData["cadenasRadios"] = CadenaRadio.obtenerTodas();
             return RedirectToAction("Index");
+        }
+
+        public int ultimoId()
+        {
+            var connection = Utils.Db.Connection();
+            int id = 0;
+
+
+            using (var query = connection.CreateCommand())
+            {
+                query.CommandText = "EXEC ultima_cadena_radio_id";
+                connection.Open();
+                using (var row = query.ExecuteReader())
+                {
+                    while (row.Read())
+                    {
+                        id = Convert.ToInt16(row.GetValue(row.GetOrdinal("id")));
+                    };
+                }
+                connection.Close();
+            }
+
+            return id;
+
         }
 
         // GET: CadenaRadio/Edit/5
