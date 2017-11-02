@@ -23,6 +23,11 @@ namespace ManejadorDePatrocinadores.Models
         [DisplayName("Responsable")]
         public string responsable { get; set; }
 
+
+        /// <summary>
+        /// Obtener lista de todos los Programas de Radio
+        /// </summary>
+        /// <returns>List<ProgramaRadio></returns>
         public static List<ProgramaRadio> obtenerTodas()
         {
             var connection = Utils.Db.Connection();

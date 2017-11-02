@@ -19,6 +19,10 @@ namespace ManejadorDePatrocinadores.Models
         [DisplayName("Importe del Contrato")]
         public float importe_contrato { get; set; }
 
+        /// <summary>
+        /// Obtener lista de todos los Patrocinadores
+        /// </summary>
+        /// <returns>List<Patrocinador></returns>
         public static List<Patrocinador> obtenerTodos()
         {
             var connection = Utils.Db.Connection();

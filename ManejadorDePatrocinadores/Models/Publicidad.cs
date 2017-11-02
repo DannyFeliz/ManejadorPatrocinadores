@@ -21,6 +21,10 @@ namespace ManejadorDePatrocinadores.Models
         [DisplayName("Costo por Publicidad")]
         public float costo { get; set; }
 
+        /// <summary>
+        /// Obtener lista de todos las Publicidades
+        /// </summary>
+        /// <returns>List<Publicidad></returns>
         public static List<Publicidad> obtenerTodas()
         {
             var connection = Utils.Db.Connection();
