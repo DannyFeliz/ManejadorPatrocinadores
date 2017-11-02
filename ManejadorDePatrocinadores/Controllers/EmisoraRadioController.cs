@@ -13,7 +13,10 @@ namespace ManejadorDePatrocinadores.Controllers
 {
     public class EmisoraRadioController : Controller
     {
-        // GET: EmisoraRadio
+        /// <summary>
+        /// Muestra el listado de todas las emisoras
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Index()
         {
 
@@ -22,7 +25,10 @@ namespace ManejadorDePatrocinadores.Controllers
             return View();
         }
 
-        // GET: EmisoraRadio/Create
+        /// <summary>
+        /// Muestra el formulario de creación de emisoras de radios
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Create()
         {
             ViewData["provinces"] = Utils.Helpers.ProvincesList();
@@ -31,7 +37,10 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
 
-        // POST: EmisoraRadio/Create
+        /// <summary>
+        /// Inserta una nueva emisora de radio
+        /// </summary>
+        /// <returns>void</returns>
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {

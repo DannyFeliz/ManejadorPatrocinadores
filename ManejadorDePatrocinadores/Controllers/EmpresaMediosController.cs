@@ -12,6 +12,10 @@ namespace ManejadorDePatrocinadores.Controllers
     public class EmpresaMediosController : Controller
     {
         // GET: EmpresaMedios
+        /// <summary>
+        /// Muestra el listado de todas las empresas de medios
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Index()
         {
             ViewData["empresasMedios"] = EmpresaMedio.obtenerTodas();
@@ -20,23 +24,25 @@ namespace ManejadorDePatrocinadores.Controllers
             return View();
         }
 
-        // GET: EmpresaMedios/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: EmpresaMedios/Create
+        /// <summary>
+        /// Muestra el formulario de creación de empresas de medios
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: EmpresaMedios/Create
+        /// <summary>
+        /// Inserta una nueva empresa de medios
+        /// </summary>
+        /// <returns>void</returns>
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-
             using (var connection = Utils.Db.Connection())
             {
                 connection.Open();
@@ -54,50 +60,6 @@ namespace ManejadorDePatrocinadores.Controllers
             ViewData["empresasMedios"] = EmpresaMedio.obtenerTodas();
             return RedirectToAction("Index");
 
-        }
-
-        // GET: EmpresaMedios/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: EmpresaMedios/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: EmpresaMedios/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: EmpresaMedios/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

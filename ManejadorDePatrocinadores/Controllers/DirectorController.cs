@@ -11,7 +11,10 @@ namespace ManejadorDePatrocinadores.Controllers
 {
     public class DirectorController : Controller
     {
-        // GET: Director
+        /// <summary>
+        /// Muestra el listado de directores
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Index()
         {
             ViewData["directores"] = Director.obtenerTodos();
@@ -19,19 +22,21 @@ namespace ManejadorDePatrocinadores.Controllers
             return View();
         }
 
-        // GET: Director/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
-        // GET: Director/Create
+        /// <summary>
+        /// Muestra el formulario de creación directores
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Director/Create
+        /// <summary>
+        /// Inserta un nuevo director
+        /// Summary
+        /// </summary>
+        /// <returns>void</returns>
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -49,50 +54,6 @@ namespace ManejadorDePatrocinadores.Controllers
             ViewData["directores"] = Director.obtenerTodos();
             return RedirectToAction("Index");
 
-        }
-
-        // GET: Director/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Director/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Director/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Director/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
