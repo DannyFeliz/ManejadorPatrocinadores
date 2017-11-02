@@ -11,6 +11,10 @@ namespace ManejadorDePatrocinadores.Controllers
     public class ProgramaRadioController : Controller
     {
         // GET: ProgramaRadio
+        /// <summary>
+        /// Obtener vista de lista de Programas de Radio
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Index()
         {
             ViewData["programas_de_radio"] = Models.ProgramaRadio.obtenerTodas();
@@ -18,12 +22,20 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // GET: ProgramaRadio/Details/5
+        /// <summary>
+        /// Obtener vista con los detalles de un Programa de Radio
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: ProgramaRadio/Create
+        /// <summary>
+        /// Obtener vista para crear un Programa de Radio
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Create()
         {
             ViewData["dias_de_la_semana"] = Utils.Helpers.DaysList();
@@ -31,6 +43,10 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // POST: ProgramaRadio/Create
+        /// <summary>
+        /// Endpoint para crear un Programa de Radio
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -75,12 +91,20 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // GET: ProgramaRadio/Edit/5
+        /// <summary>
+        /// Obtener vista para editar un Programa de Radio
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: ProgramaRadio/Edit/5
+        /// <summary>
+        /// Endpoint para editar un Programa de Radio
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -97,12 +121,20 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // GET: ProgramaRadio/Delete/5
+        /// <summary>
+        /// Obtener vista para eliminar un Programa de Radio
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: ProgramaRadio/Delete/5
+        /// <summary>
+        /// Endpoint para eliminar un Programa de Radio
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -7,6 +7,10 @@ namespace ManejadorDePatrocinadores.Controllers
     public class PublicidadController : Controller
     {
         // GET: Publicidad
+        /// <summary>
+        /// Obtener vista con el listado de Publicidad
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Index()
         {   
             ViewData["publicidad"] = Models.Publicidad.obtenerTodas();
@@ -14,12 +18,20 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // GET: Publicidad/Details/5
+        /// <summary>
+        /// Obtener vista con los detalles de una Publicidad
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Publicidad/Create
+        /// <summary>
+        /// Obtener vista con formulario para crear una publicidad
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Create()
         {
             ViewData["patrocinadores"] = Models.Patrocinador.obtenerTodos();
@@ -28,6 +40,10 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // POST: Publicidad/Create
+        /// <summary>
+        /// Endpoint para crear una Publicidad
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -60,12 +76,20 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // GET: Publicidad/Edit/5
+        /// <summary>
+        /// Obtener vista para editar una Publicidad
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Publicidad/Edit/5
+        /// <summary>
+        /// Endpoint para editar una Publicidad
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -82,12 +106,20 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // GET: Publicidad/Delete/5
+        /// <summary>
+        /// Obtener vista para eliminar una Publicidad
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Publicidad/Delete/5
+        /// <summary>
+        /// Endpoint para eliminar una Publicidad
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

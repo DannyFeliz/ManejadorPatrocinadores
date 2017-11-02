@@ -7,6 +7,10 @@ namespace ManejadorDePatrocinadores.Controllers
     public class PatrocinadorController : Controller
     {
         // GET: Patrocinador
+        /// <summary>
+        /// Obtener lista de Patrocinadores
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Index()
         {
             ViewData["patrocinadores"] = Models.Patrocinador.obtenerTodos();
@@ -14,18 +18,30 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // GET: Patrocinador/Details/5
+        /// <summary>
+        /// Obtener lista de detalles de Patrocinadores
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Patrocinador/Create
+        /// <summary>
+        /// Obtener vista de creacion de Patrocinadores
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Patrocinador/Create
+        /// <summary>
+        /// Endpoint para crear Patrocinador
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -55,12 +71,20 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // GET: Patrocinador/Edit/5
+        /// <summary>
+        /// Obtener un Patrocinador en especifico
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Patrocinador/Edit/5
+        /// <summary>
+        /// Endpoint para actualizar un Patrocinador
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -77,12 +101,20 @@ namespace ManejadorDePatrocinadores.Controllers
         }
 
         // GET: Patrocinador/Delete/5
+        /// <summary>
+        /// Obtener vista para eliminar un Patrocinador
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Patrocinador/Delete/5
+        /// <summary>
+        /// Endpoint para eliminar un Patrocinador
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
