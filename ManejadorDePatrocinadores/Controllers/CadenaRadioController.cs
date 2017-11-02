@@ -11,7 +11,11 @@ namespace ManejadorDePatrocinadores.Controllers
 {
     public class CadenaRadioController : Controller
     {
-        // GET: CadenaRadio
+
+        /// <summary>
+        /// Obtiene el listado de todas las cadenas de radio
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Index()
         {
             ViewData["cadenasRadios"] = CadenaRadio.obtenerTodas();
@@ -19,13 +23,11 @@ namespace ManejadorDePatrocinadores.Controllers
             return View();
         }
 
-        // GET: CadenaRadio/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CadenaRadio/Create
+        /// <summary>
+        /// Muetras formulario de creación de Cadena de Radio
+        /// Summary
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Create()
         {
             ViewData["directoresLista"] = Director.obtenerTodos();
@@ -35,13 +37,46 @@ namespace ManejadorDePatrocinadores.Controllers
             return View();
         }
 
-        // GET: EmisoraRadio/Create
-        public string programs()
+        /// <summary>
+        /// Obtiene el listado de todos los programas de radio registrado
+        /// </summary>
+        /// <returns>JsonResult</returns>
+        public JsonResult programs()
         {
-            return "[{\"nombre\": \"Buenas Noches\", \"id\":433}, {\"nombre\": \"Serie 1\", \"id\": 234}]";
+            var connection = Utils.Db.Connection();
+            var list = new List<ProgramaRadio>();
+
+            using (var query = connection.CreateCommand())
+            {
+                query.CommandText = "EXEC lista_programa_radio";
+                connection.Open();
+                using (var row = query.ExecuteReader())
+                {
+                    while (row.Read())
+                    {
+                        var emisoraRadio = new ProgramaRadio
+                        {
+                            id = Convert.ToInt32(row.GetValue(row.GetOrdinal("id"))),
+                            dia = Convert.ToInt32(row.GetValue(row.GetOrdinal("dia"))),
+                            hora_inicio = row.GetValue(row.GetOrdinal("hora_inicio")).ToString(),
+                            hora_fin = row.GetValue(row.GetOrdinal("hora_fin")).ToString(),
+                            nombre = row.GetValue(row.GetOrdinal("nombre")).ToString(),
+                            responsable = row.GetValue(row.GetOrdinal("encargado")).ToString(),
+                        };
+                        list.Add(emisoraRadio);
+                    }
+                }
+                connection.Close();
+            }
+
+            return Json(new { list }, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: CadenaRadio/Create
+        /// <summary>
+        /// Inserta una nueva cadena de radio junto a sus depedencias
+        /// </summary>
+        /// <param name="collection">Formulario</param>
+        /// <returns>void</returns>
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -86,6 +121,10 @@ namespace ManejadorDePatrocinadores.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Obtiene el último id la cadena de radio
+        /// </summary>
+        /// <returns>int</returns>
         public int ultimoId()
         {
             var connection = Utils.Db.Connection();
@@ -107,51 +146,6 @@ namespace ManejadorDePatrocinadores.Controllers
             }
 
             return id;
-
-        }
-
-        // GET: CadenaRadio/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CadenaRadio/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CadenaRadio/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CadenaRadio/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

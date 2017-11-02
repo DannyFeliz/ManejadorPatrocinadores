@@ -166,6 +166,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\messages_es.js" />
     <Content Include="Scripts\methods_es_CL.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
