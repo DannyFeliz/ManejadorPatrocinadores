@@ -12,7 +12,7 @@ namespace ManejadorDePatrocinadores.Models
 
         [DisplayName("Programa de Radio")]
         public int programa_radio { get; set; }
-        [DisplayName("Segundos/Tiempoo de Publicidad")]
+        [DisplayName("Tiempo de Publicidad (Segundos)")]
         public int segundos { get; set; }
         [DisplayName("Patrocinador")]
         public int patrocinador { get; set; }

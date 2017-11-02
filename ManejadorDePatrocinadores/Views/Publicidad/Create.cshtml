@@ -1,4 +1,5 @@
-﻿@model ManejadorDePatrocinadores.Models.Publicidad
+﻿@using ManejadorDePatrocinadores.Models
+@model ManejadorDePatrocinadores.Models.Publicidad
 
 @{
     ViewBag.Title = "Create";
@@ -18,10 +19,12 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.programa_radio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.programa_radio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.programa_radio, "", new { @class = "text-danger" })
-            </div>
+            <select class="form-control" required name="programa_radio">
+                @foreach (var item in (List<ProgramaRadio>)ViewData["programas_de_radio"])
+                {
+                    <option value="@item.id">@item.nombre</option>
+                }
+            </select>
         </div>
 
         <div class="form-group">
@@ -34,10 +37,12 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.patrocinador, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.patrocinador, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.patrocinador, "", new { @class = "text-danger" })
-            </div>
+            <select class="form-control" required name="patrocinador">
+                @foreach (var item in (List<Patrocinador>)ViewData["patrocinadores"])
+                {
+                    <option value="@item.numero_contrato">@item.nombre</option>
+                }
+            </select>
         </div>
 
         <div class="form-group">
