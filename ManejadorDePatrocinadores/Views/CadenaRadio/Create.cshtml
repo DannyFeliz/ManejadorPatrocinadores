@@ -5,14 +5,14 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CadenaRadio</h4>
+        <h4>Crear CadenaRadio</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -66,7 +66,9 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.duracion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">
+                Duración (En días)
+            </label>
             <div class="col-md-10">
                 <input type="number" step="any" class="form-control" required name="duracion">
             </div>

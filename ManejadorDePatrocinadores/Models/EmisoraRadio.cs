@@ -34,6 +34,7 @@ namespace ManejadorDePatrocinadores.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Este campo es requerido")]
         [DisplayName("Provincia")]
         public string provincia  { get; set; }
+        public virtual string nombre_director { get; set; }
 
 
         public static List<EmisoraRadio> obtenerTodas()
@@ -56,7 +57,8 @@ namespace ManejadorDePatrocinadores.Models
                             direccion_postal = row.GetValue(row.GetOrdinal("direccion_postal")).ToString(),
                             director = row.GetValue(row.GetOrdinal("director")).ToString(),
                             nombre = row.GetValue(row.GetOrdinal("nombre")).ToString(),
-                            provincia = row.GetValue(row.GetOrdinal("provincia")).ToString()
+                            provincia = row.GetValue(row.GetOrdinal("provincia")).ToString(),
+                            nombre_director = row.GetValue(row.GetOrdinal("nombre_director")).ToString(),
                         };
                         list.Add(emisoraRadio);
                     }
